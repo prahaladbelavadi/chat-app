@@ -20,9 +20,9 @@ io.on('connection', (socket) => {
 
   socket.broadcast.emit('message', 'A new user has joined!');
 
-  socket.on('sendMessage', (val) => {
-    console.log(val);
+  socket.on('sendMessage', (val, callback) => {
     io.emit('message', `serverside:${val}`);
+    callback('This is a delivered Acknowledgement from server');
   });
 
   socket.on('sendLocation', ({ latitude, longitude }) => {
