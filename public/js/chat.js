@@ -6,12 +6,11 @@ socket.on('message', (data) => {
 
 document.querySelector('#message-form').addEventListener('submit', (e) => {
   e.preventDefault();
-  // const val = document.querySelector('input').value;
-  const val = e.target.elements.message.value;
-  console.log(`client:${val}`);
+  const message = e.target.elements.message.value;
+  // console.log(`client:${message}`);
 
-  socket.emit('sendMessage', val, (message) => {
-    console.log('the message was delivered', message);
+  socket.emit('sendMessage', message, (mess) => {
+    console.log('the message was delivered ack', mess);
   });
 });
 

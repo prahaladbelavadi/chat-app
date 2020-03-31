@@ -20,14 +20,12 @@ io.on('connection', (socket) => {
 
   socket.broadcast.emit('message', 'A new user has joined!');
 
-  socket.on('sendMessage', (val, callback) => {
-    io.emit('message', `serverside:${val}`);
+  socket.on('sendMessage', (message,callback) => {
+    io.emit('message', message);
     callback('This is a delivered Acknowledgement from server');
   });
 
   socket.on('sendLocation', ({ latitude, longitude }) => {
-    // socket.broadcast.emit('message', coordinates);
-    // console.log(coordinates);
     io.emit('message', `https://google.com/maps/?q=${latitude},${longitude}`);
   });
 
