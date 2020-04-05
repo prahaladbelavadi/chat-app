@@ -32,10 +32,12 @@ io.on('connection', (socket) => {
     callback();
   });
 
-  socket.on('sendLocation', ({ latitude, longitude }) => {
+  socket.on('sendLocation', ({ latitude, longitude }, callback) => {
     // socket.broadcast.emit('message', coordinates);
     // console.log(coordinates);
     io.emit('message', `https://google.com/maps/?q=${latitude},${longitude}`);
+
+     callback('Location shared')
   });
 
   socket.on('disconnect', () => {
