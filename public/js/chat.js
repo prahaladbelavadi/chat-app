@@ -11,7 +11,10 @@ document.querySelector('#message-form').addEventListener('submit', (e) => {
   console.log(`client:${val}`);
 
   socket.emit('sendMessage', val, (error) => {
-    console.log(error);
+    if(error){
+      return console.log(error)
+    }
+    console.log("message delivered")
   });
 });
 
